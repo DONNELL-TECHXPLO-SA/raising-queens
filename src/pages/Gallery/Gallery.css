@@ -41,6 +41,30 @@
   transform: scale(1.02);
 }
 
+.gallery-load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 6px 0 28px;
+}
+
+.gallery-load-more {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-weight: 600;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.gallery-load-more:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
 .full-viewer {
   position: fixed;
   top: 0;

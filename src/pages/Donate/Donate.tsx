@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Footer from '../../components/Footer/Footer';
-import DonationModal from './components/DonationModal';
-import './Donate.css';
-import Sanitary from '../../../images/Sanitary_Products.png';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
+import DonationModal from "./components/DonationModal";
+import "./Donate.css";
+import Sanitary from "../../../images/Sanitary_Products.png";
 interface DonationOption {
   id: string;
   title: string;
@@ -16,32 +16,51 @@ interface DonationOption {
 
 const donationOptions: DonationOption[] = [
   {
-    id: 'sanitary',
-    title: 'Sanitary Drive',
-    description: 'Help us provide essential hygiene products to women in need. Your donation supports dignity and health.',
+    id: "sanitary",
+    title: "Sanitary Drive",
+    description:
+      "Help us provide essential hygiene products to women in need. Your donation supports dignity and health.",
     image: Sanitary,
-    icon: 'fas fa-box',
-    items: ['Feminine hygiene products', 'Personal care items', 'Healthcare essentials', 'Comfort care packages'],
-    dropoff: '47 Maple Drive, Kyalami, Johannesburg 1684'
+    icon: "fas fa-box",
+    items: [
+      "Feminine hygiene products",
+      "Personal care items",
+      "Healthcare essentials",
+      "Comfort care packages",
+    ],
+    dropoff: "47 Maple Drive, Kyalami, Johannesburg 1684",
   },
   {
-    id: 'food',
-    title: 'Food Drive',
-    description: 'Support families in our community with nutritious meals and essential food items.',
-    image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=1080',
-    icon: 'fas fa-utensils',
-    items: ['Non-perishable food items', 'Fresh produce vouchers', 'Baby formula and supplies', 'Meal preparation kits'],
-    dropoff: '47 Maple Drive, Kyalami, Johannesburg 1684'
+    id: "food",
+    title: "Food Drive",
+    description:
+      "Support families in our community with nutritious meals and essential food items.",
+    image:
+      "https://images.unsplash.com/photo-1606787366850-de6330128bfc?auto=format&fit=crop&w=1080",
+    icon: "fas fa-utensils",
+    items: [
+      "Non-perishable food items",
+      "Fresh produce vouchers",
+      "Baby formula and supplies",
+      "Meal preparation kits",
+    ],
+    dropoff: "47 Maple Drive, Kyalami, Johannesburg 1684",
   },
   {
-    id: 'education',
-    title: 'Education Fund',
-    description: 'Invest in the future by supporting educational programs, scholarships, and learning resources.',
-    image: '/images/RQDonationEdu.jpg',
-    icon: 'fas fa-graduation-cap',
-    items: ['Scholarship program funding', 'Workshop materials and supplies', 'Educational technology access', 'Professional development courses'],
-    dropoff: 'Online donations preferred'
-  }
+    id: "education",
+    title: "Education Fund",
+    description:
+      "Invest in the future by supporting educational programs, scholarships, and learning resources.",
+    image: "/images/RQDonationEdu.jpg",
+    icon: "fas fa-graduation-cap",
+    items: [
+      "Scholarship program funding",
+      "Workshop materials and supplies",
+      "Educational technology access",
+      "Professional development courses",
+    ],
+    dropoff: "Online donations preferred",
+  },
 ];
 
 const Donate = () => {
@@ -57,7 +76,7 @@ const Donate = () => {
   };
 
   const handleMoneyDonate = () => {
-    navigate('/bank-details');
+    navigate("/bank-details");
   };
 
   return (
@@ -83,8 +102,8 @@ const Donate = () => {
         <div className="section-header">
           <h2>Ways to Give</h2>
           <p>
-            Choose how you'd like to support our mission. Each category addresses
-            specific needs in our community.
+            Choose how you'd like to support our mission. Each category
+            addresses specific needs in our community.
           </p>
         </div>
 
@@ -92,7 +111,12 @@ const Donate = () => {
           {donationOptions.map((option) => (
             <div className="donation-card" key={option.id}>
               <div className="card-image">
-                <img src={option.image} alt={option.title} />
+                <img
+                  src={option.image}
+                  alt={option.title}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="icon-badge">
                   <i className={option.icon}></i>
                 </div>
@@ -111,10 +135,15 @@ const Donate = () => {
                 </ul>
 
                 <div className="info">
-                  <p><strong>Drop-off:</strong> {option.dropoff}</p>
+                  <p>
+                    <strong>Drop-off:</strong> {option.dropoff}
+                  </p>
                 </div>
 
-                <button className="btn" onClick={() => handleDonateClick(option.title)}>
+                <button
+                  className="btn"
+                  onClick={() => handleDonateClick(option.title)}
+                >
                   Donate Now <i className="fas fa-arrow-right"></i>
                 </button>
               </div>
@@ -131,11 +160,10 @@ const Donate = () => {
             <h2>General Donation</h2>
           </div>
           <p>
-            Support our overall mission with a general donation. These funds help us
-            maintain our programs, support our team, and respond to urgent community
-            needs.
+            Support our overall mission with a general donation. These funds
+            help us maintain our programs, support our team, and respond to
+            urgent community needs.
           </p>
-
 
           <button className="btn large" onClick={handleMoneyDonate}>
             <i className="fas fa-heart"></i> Donate

@@ -143,7 +143,12 @@ const Events = () => {
                 )}
               </div>
               <div className="featured-image">
-                <img src={featuredEvent.image} alt={featuredEvent.title} />
+                <img
+                  src={featuredEvent.image}
+                  alt={featuredEvent.title}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </>
           ) : (
@@ -175,7 +180,12 @@ const Events = () => {
               className={`event-card ${event.status} ${event.category.toLowerCase()} visible`}
             >
               <div className="event-image">
-                <img src={event.image} alt={event.title} />
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div
                   className={`event-date ${event.status === "past" ? "past-date" : ""}`}
                 >

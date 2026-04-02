@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import './Footer.css';
+import { Link } from "react-router-dom";
+import "./Footer.css";
 
 const Footer = () => {
   return (
@@ -10,29 +10,48 @@ const Footer = () => {
           <div className="footer-logo-mission">
             <div className="footer-logo">
               <Link to="/">
-                <img src="/images/logo-inverted.png" alt="Raising Queens Logo" className="footer-logo-img" />
+                <img
+                  src="/images/logo-inverted.png"
+                  alt="Raising Queens Logo"
+                  className="footer-logo-img"
+                  loading="lazy"
+                  decoding="async"
+                />
               </Link>
             </div>
             <p>
-              Empowering women through community support, education, and opportunities for growth.
-              Together, we rise and help others rise too.
+              Empowering women through community support, education, and
+              opportunities for growth. Together, we rise and help others rise
+              too.
             </p>
 
             {/* Social Media */}
             <div className="social-links">
-              <a href="https://www.facebook.com/share/19NDCD3vNG/" aria-label="Facebook">
+              <a
+                href="https://www.facebook.com/share/19NDCD3vNG/"
+                aria-label="Facebook"
+              >
                 <i className="fab fa-facebook-f"></i>
               </a>
               <a href="https://wa.me/27814076516" aria-label="WhatsApp">
                 <i className="fab fa-whatsapp"></i>
               </a>
-              <a href="https://www.instagram.com/raisingqueensfoundation?igsh=a2NqazM0MjQzdDEy" aria-label="Instagram">
+              <a
+                href="https://www.instagram.com/raisingqueensfoundation?igsh=a2NqazM0MjQzdDEy"
+                aria-label="Instagram"
+              >
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="https://www.tiktok.com/@raisingqueensfoundation?_t=ZM-8zMhEOe7ubQ&_r=1" aria-label="Tiktok">
+              <a
+                href="https://www.tiktok.com/@raisingqueensfoundation?_t=ZM-8zMhEOe7ubQ&_r=1"
+                aria-label="Tiktok"
+              >
                 <i className="fab fa-tiktok"></i>
               </a>
-              <a href="https://www.linkedin.com/company/raisingqueensfoundation/" aria-label="LinkedIn">
+              <a
+                href="https://www.linkedin.com/company/raisingqueensfoundation/"
+                aria-label="LinkedIn"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </div>
@@ -69,8 +88,9 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Raising Queens. All rights reserved.</p>
-          
+          <p>
+            © {new Date().getFullYear()} Raising Queens. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

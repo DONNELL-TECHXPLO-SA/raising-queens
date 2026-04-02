@@ -39,7 +39,13 @@ const EventDetails = () => {
       ) : event ? (
         <>
           <section className="event-details-hero">
-            <img src={event.image} alt={event.title} />
+            <img
+              src={event.image}
+              alt={event.title}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
             <div className="event-details-overlay">
               <span className="event-details-badge">
                 {event.status === "past" ? "Past Event" : event.category}

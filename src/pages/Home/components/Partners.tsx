@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import './Partners.css';
+import { useEffect, useRef } from "react";
+import "./Partners.css";
 
 interface Partner {
   name: string;
@@ -7,17 +7,20 @@ interface Partner {
 }
 
 const partners: Partner[] = [
-  { name: 'Rays of Hope', logo: '/images/ROH logo.png' },
-  { name: 'For Good', logo: '/images/For-Good.jpg' },
-  { name: 'Frida Hartley Shelter', logo: '/images/frida hartley shelter.png' },
-  { name: 'Momentum', logo: '/images/momentum.png' },
-  { name: 'Sisonke Foundation', logo: '/images/sisonke_wellness_foundation_logo.jpeg' },
-  { name: 'Virgin Active', logo: '/images/Virgin-Active_Logo.png' },
-  { name: 'Leap', logo: '/images/leap.png' },
-  { name: 'Shibe\'s Creative Kids', logo: '/images/Shibes Creative Kids.jpg' },
-  { name: 'Panda', logo: '/images/Panda Logo.jpg' },
-  { name: 'WMC International', logo: '/images/WMC Logo.jpg' },
-  { name: 'VSC', logo: '/images/VSC Logo.jpg' }
+  { name: "Rays of Hope", logo: "/images/ROH logo.png" },
+  { name: "For Good", logo: "/images/For-Good.jpg" },
+  { name: "Frida Hartley Shelter", logo: "/images/frida hartley shelter.png" },
+  { name: "Momentum", logo: "/images/momentum.png" },
+  {
+    name: "Sisonke Foundation",
+    logo: "/images/sisonke_wellness_foundation_logo.jpeg",
+  },
+  { name: "Virgin Active", logo: "/images/Virgin-Active_Logo.png" },
+  { name: "Leap", logo: "/images/leap.png" },
+  { name: "Shibe's Creative Kids", logo: "/images/Shibes Creative Kids.jpg" },
+  { name: "Panda", logo: "/images/Panda Logo.jpg" },
+  { name: "WMC International", logo: "/images/WMC Logo.jpg" },
+  { name: "VSC", logo: "/images/VSC Logo.jpg" },
 ];
 
 const Partners = () => {
@@ -53,7 +56,12 @@ const Partners = () => {
         <div className="carousel-track" ref={trackRef}>
           {[...partners, ...partners].map((partner, index) => (
             <div className="partner" key={index}>
-              <img src={partner.logo} alt={partner.name} />
+              <img
+                src={partner.logo}
+                alt={partner.name}
+                loading="lazy"
+                decoding="async"
+              />
               <p>{partner.name}</p>
             </div>
           ))}
@@ -62,7 +70,9 @@ const Partners = () => {
 
       <div className="partners-cta">
         <p>Interested in becoming a partner?</p>
-        <a href="#contact" className="partner-link">Become a Partner</a>
+        <a href="#contact" className="partner-link">
+          Become a Partner
+        </a>
       </div>
     </section>
   );
