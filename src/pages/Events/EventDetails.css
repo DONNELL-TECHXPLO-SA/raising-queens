@@ -1,0 +1,130 @@
+.event-details-page {
+  min-height: 100vh;
+  background: #f9f9f9;
+}
+
+.event-details-hero {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+}
+
+.event-details-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-details-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.2));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px 20px;
+  color: white;
+}
+
+.event-details-overlay h1 {
+  margin: 10px 0 0;
+  font-size: 40px;
+  max-width: 900px;
+}
+
+.event-details-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  background: #c6a291;
+  color: white;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.event-details-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.event-details-main,
+.event-details-actions,
+.event-details-state {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.event-details-main {
+  padding: 28px;
+}
+
+.event-details-main h2 {
+  margin: 0 0 12px;
+  color: #333;
+}
+
+.event-details-main p {
+  color: #555;
+  line-height: 1.7;
+}
+
+.event-details-info-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.event-details-item {
+  background: #f7f2ef;
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.event-details-item h3 {
+  margin: 0 0 4px;
+  color: #5c4a42;
+  font-size: 14px;
+}
+
+.event-details-item p {
+  margin: 0;
+  color: #333;
+}
+
+.event-details-actions {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: fit-content;
+}
+
+.event-details-state {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 28px;
+  text-align: center;
+}
+
+.event-details-state .btn-secondary {
+  max-width: 240px;
+  margin: 16px auto 0;
+}
+
+@media (max-width: 768px) {
+  .event-details-overlay h1 {
+    font-size: 30px;
+  }
+
+  .event-details-content {
+    grid-template-columns: 1fr;
+    padding-top: 24px;
+  }
+}

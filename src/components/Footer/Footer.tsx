@@ -69,7 +69,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="footer-bottom">
-          <p>© 2025 Raising Queens. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Raising Queens. All rights reserved.</p>
           
         </div>
       </div>

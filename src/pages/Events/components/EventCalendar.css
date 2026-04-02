@@ -59,16 +59,19 @@
 }
 
 .calendar-day {
-  aspect-ratio: 1;
+  min-height: 80px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   border-radius: 6px;
   font-size: 16px;
   color: #333;
   background: #f9f9f9;
-  cursor: pointer;
+  cursor: default;
   transition: background 0.3s;
+  padding: 8px;
+  overflow: hidden;
 }
 
 .calendar-day.empty {
@@ -79,10 +82,59 @@
 .calendar-day.event-day {
   background: #ff9acd;
   border: 2px solid #ff3b8b;
-  font-weight: bold;
   color: #000;
+  cursor: pointer;
 }
 
-.calendar-day:hover:not(.empty) {
+.calendar-day-number {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.calendar-day-events {
+  margin-top: 6px;
+  text-align: left;
+}
+
+.calendar-day-event-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.calendar-day-more {
+  display: block;
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.calendar-day:hover:not(.empty):not(.event-day) {
   background: #e9e9e9;
+}
+
+.calendar-day.event-day:hover,
+.calendar-day.event-day:focus-visible {
+  background: #ff84c4;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .calendar-grid {
+    gap: 6px;
+  }
+
+  .calendar-day {
+    min-height: 66px;
+    padding: 6px;
+  }
+
+  .calendar-day-event-title {
+    font-size: 10px;
+    -webkit-line-clamp: 1;
+  }
 }

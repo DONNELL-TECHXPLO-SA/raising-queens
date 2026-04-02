@@ -1,6 +1,42 @@
+import { useEffect, useRef, useState } from 'react';
 import './About.css';
 
+const useCountUp = (end: number, duration = 2000) => {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started) return;
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / duration, 1);
+      setCount(Math.floor(progress * end));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [started, end, duration]);
+
+  return { count, ref };
+};
+
 const About = () => {
+  const youths = useCountUp(1000);
+  const pads = useCountUp(1000);
+  const partners = useCountUp(15);
   return (
     <section className="about">
       <div className="container">
@@ -26,15 +62,15 @@ const About = () => {
           </p>
           <div className="stats">
             <div className="stat">
-              <span className="number">1000+</span>
+              <span className="number" ref={youths.ref}>{youths.count}+</span>
               <span className="label">Youths impacted</span>
             </div>
             <div className="stat">
-              <span className="number">1000s</span>
+              <span className="number" ref={pads.ref}>{pads.count}s</span>
               <span className="label">Pads Donated</span>
             </div>
             <div className="stat">
-              <span className="number">15+</span>
+              <span className="number" ref={partners.ref}>{partners.count}+</span>
               <span className="label">Partnerships Annually</span>
             </div>
           </div>

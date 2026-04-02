@@ -53,3 +53,28 @@
   font-size: 14px;
   color: #555;
 }
+
+@media (max-width: 768px) {
+  .about .container {
+    flex-direction: column;
+  }
+
+  .story-image {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .story-content h2 {
+    font-size: 26px;
+  }
+
+  .story-content p {
+    font-size: 15px;
+  }
+
+  .stats {
+    justify-content: center;
+    gap: 24px;
+    text-align: center;
+  }
+}

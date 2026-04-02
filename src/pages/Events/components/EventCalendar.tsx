@@ -1,25 +1,34 @@
-import { useState } from 'react';
-import './EventCalendar.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./EventCalendar.css";
 
-interface EventDate {
-  day: number;
-  month: number;
-  year: number;
+interface CalendarEvent {
+  id: string;
+  title: string;
+  date: Date;
 }
 
-const upcomingEvents: EventDate[] = [
-  { day: 22, month: 11, year: 2025 },
-  { day: 25, month: 11, year: 2025 },
-  { day: 8, month: 12, year: 2025 },
-  { day: 28, month: 12, year: 2025 },
-  { day: 20, month: 12, year: 2025 },
-  { day: 15, month: 1, year: 2026 }
+interface EventCalendarProps {
+  upcomingEvents: CalendarEvent[];
+}
+
+const monthNames = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
-const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"];
-
-const EventCalendar = () => {
+const EventCalendar = ({ upcomingEvents }: EventCalendarProps) => {
+  const navigate = useNavigate();
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -36,17 +45,56 @@ const EventCalendar = () => {
 
     // Day cells
     for (let day = 1; day <= daysInMonth; day++) {
-      const isEventDay = upcomingEvents.some(event =>
-        event.day === day && event.month === currentMonth + 1 && event.year === currentYear
+      const dayEvents = upcomingEvents.filter(
+        (event) =>
+          event.date.getDate() === day &&
+          event.date.getMonth() === currentMonth &&
+          event.date.getFullYear() === currentYear,
       );
+      const primaryEvent = dayEvents[0];
+      const isEventDay = dayEvents.length > 0;
 
       days.push(
-        <div 
-          key={day} 
-          className={`calendar-day ${isEventDay ? 'event-day' : ''}`}
+        <div
+          key={day}
+          className={`calendar-day ${isEventDay ? "event-day" : ""}`}
+          role={isEventDay ? "button" : undefined}
+          tabIndex={isEventDay ? 0 : -1}
+          onClick={() => {
+            if (primaryEvent) {
+              navigate(`/events/${primaryEvent.id}`);
+            }
+          }}
+          onKeyDown={(event) => {
+            if (!primaryEvent) return;
+
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              navigate(`/events/${primaryEvent.id}`);
+            }
+          }}
+          aria-label={
+            isEventDay
+              ? `View event details for ${monthNames[currentMonth]} ${day}: ${dayEvents
+                  .map((event) => event.title)
+                  .join(", ")}`
+              : undefined
+          }
         >
-          {day}
-        </div>
+          <span className="calendar-day-number">{day}</span>
+          {isEventDay && (
+            <div className="calendar-day-events">
+              <span className="calendar-day-event-title">
+                {primaryEvent.title}
+              </span>
+              {dayEvents.length > 1 && (
+                <span className="calendar-day-more">
+                  +{dayEvents.length - 1} more
+                </span>
+              )}
+            </div>
+          )}
+        </div>,
       );
     }
 
@@ -80,14 +128,14 @@ const EventCalendar = () => {
             <button className="nav-btn" onClick={prevMonth}>
               <i className="fas fa-chevron-left"></i>
             </button>
-            <h3>{monthNames[currentMonth]} {currentYear}</h3>
+            <h3>
+              {monthNames[currentMonth]} {currentYear}
+            </h3>
             <button className="nav-btn" onClick={nextMonth}>
               <i className="fas fa-chevron-right"></i>
             </button>
           </div>
-          <div className="calendar-grid">
-            {generateCalendar()}
-          </div>
+          <div className="calendar-grid">{generateCalendar()}</div>
         </div>
       </div>
     </section>
