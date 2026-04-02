@@ -1,10 +1,17 @@
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import SEO from '../../components/SEO/SEO';
 import './BankDetails.css';
 
 const BankDetails = () => {
   return (
     <div className="bank-details-page">
+      <SEO
+        title="Banking Details | Raising Queens Foundation"
+        description="Use Raising Queens Foundation EFT banking details to make a secure direct donation and support women-focused community initiatives."
+        path="/bank-details"
+        image="/images/logo.png"
+      />
       <main className="banking-page">
         <section className="banking-hero">
           <span className="eyebrow">Direct Transfer Option</span>

@@ -1,9 +1,17 @@
 import { useState } from "react";
 import Footer from "../../components/Footer/Footer";
+import SEO from "../../components/SEO/SEO";
 import "./Gallery.css";
 
 const INITIAL_VISIBLE_IMAGES = 18;
 const LOAD_MORE_STEP = 12;
+
+const toDescriptiveAlt = (path: string) => {
+  const filename = path.split("/").pop() || "community gallery image";
+  const nameOnly = filename.replace(/\.[a-z0-9]+$/i, "");
+
+  return `Raising Queens community event photo ${nameOnly.replace(/[_-]+/g, " ")}`;
+};
 
 const galleryImages = [
   "/gallery/IMG_0209.jpg",
@@ -66,8 +74,15 @@ const Gallery = () => {
 
   return (
     <div className="gallery-page">
+      <SEO
+        title="Gallery | Raising Queens Foundation"
+        description="Explore the Raising Queens photo gallery featuring workshops, outreach programs, and moments of impact from our community events."
+        path="/gallery"
+        image="/gallery/IMG_2165.jpg"
+        keywords="Raising Queens gallery, NGO event photos, women empowerment community photos"
+      />
       <section className="gallery-header">
-        <h2>Event Gallery</h2>
+        <h1>Event Gallery</h1>
         <p>
           Relive the moments that matter. Explore photos from our workshops,
           events, and community gatherings that celebrate the strength and
@@ -80,7 +95,7 @@ const Gallery = () => {
           <img
             key={index}
             src={image}
-            alt={`Gallery Image ${index + 1}`}
+            alt={toDescriptiveAlt(image)}
             loading={index < 6 ? "eager" : "lazy"}
             decoding="async"
             onClick={() => handleImageClick(image)}

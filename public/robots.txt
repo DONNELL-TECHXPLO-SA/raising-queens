@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Avoid indexing utility endpoints if ever introduced
+Disallow: /api/
+
+Sitemap: https://raisingqueens.org.za/sitemap.xml

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
+import SEO from "../../components/SEO/SEO";
 import DonationModal from "./components/DonationModal";
 import "./Donate.css";
 import Sanitary from "../../../images/Sanitary_Products.png";
@@ -81,6 +82,13 @@ const Donate = () => {
 
   return (
     <div className="donate-page">
+      <SEO
+        title="Donate | Raising Queens Foundation"
+        description="Support Raising Queens through direct giving, food drives, sanitary support, and education funding for women and girls."
+        path="/donate"
+        image="/images/RQDonationEdu.jpg"
+        keywords="donate South Africa NGO, support women and girls, Raising Queens donation"
+      />
       {/* Header Section */}
       <section className="header-section">
         <div className="header-overlay"></div>

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
+import SEO from "../../components/SEO/SEO";
 import "./Events.css";
 import EventCalendar from "./components/EventCalendar";
 import Newsletter from "./components/Newsletter";
@@ -46,8 +47,45 @@ const Events = () => {
     [events],
   );
 
+  const eventsSchema = useMemo(() => {
+    const upcomingEvents = events.filter((event) => event.status === "upcoming");
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Raising Queens Upcoming Events",
+      itemListElement: upcomingEvents.slice(0, 10).map((event, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Event",
+          name: event.title,
+          description: event.description,
+          startDate: event.eventDate.toISOString(),
+          eventStatus: "https://schema.org/EventScheduled",
+          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+          image: event.image,
+          location: {
+            "@type": "Place",
+            name: event.location,
+            address: event.location,
+          },
+          url: `https://raisingqueens.org.za/events/${event.id}`,
+        },
+      })),
+    };
+  }, [events]);
+
   return (
     <div className="events-page">
+      <SEO
+        title="Events | Raising Queens Foundation"
+        description="Browse upcoming Raising Queens events, workshops, and community gatherings designed to empower women and girls."
+        path="/events"
+        image="/gallery/events/event1.webp"
+        keywords="women empowerment events, workshops South Africa, Raising Queens events"
+        schema={eventsSchema}
+      />
       {/* Events Hero Section */}
       <section className="events-hero">
         <div className="events-hero-content">

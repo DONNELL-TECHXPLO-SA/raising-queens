@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
+import SEO from "../../components/SEO/SEO";
 import "./EventDetails.css";
 import { type Event, fetchEvents } from "./eventsData";
 
@@ -15,6 +16,34 @@ const EventDetails = () => {
 
   const [event, setEvent] = useState<Event | null>(state?.event || null);
   const [isLoading, setIsLoading] = useState(!state?.event);
+
+  const path = eventId ? `/events/${eventId}` : "/events";
+  const eventSchema = event
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: event.title,
+        description: event.description,
+        startDate: event.eventDate.toISOString(),
+        eventStatus:
+          event.status === "past"
+            ? "https://schema.org/EventCompleted"
+            : "https://schema.org/EventScheduled",
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+        image: event.image,
+        location: {
+          "@type": "Place",
+          name: event.location,
+          address: event.location,
+        },
+        organizer: {
+          "@type": "Organization",
+          name: "Raising Queens Foundation",
+          url: "https://raisingqueens.org.za/",
+        },
+        url: `https://raisingqueens.org.za${path}`,
+      }
+    : undefined;
 
   useEffect(() => {
     if (!eventId || event) return;
@@ -32,6 +61,23 @@ const EventDetails = () => {
 
   return (
     <div className="event-details-page">
+      <SEO
+        title={
+          event
+            ? `${event.title} | Raising Queens Events`
+            : "Event Details | Raising Queens Foundation"
+        }
+        description={
+          event
+            ? event.description
+            : "Explore event details from Raising Queens Foundation workshops and community initiatives."
+        }
+        path={path}
+        image={event?.image || "/gallery/events/event1.webp"}
+        type="event"
+        noindex={!event && !isLoading}
+        schema={eventSchema}
+      />
       {isLoading ? (
         <section className="event-details-state">
           <p>Loading event details...</p>
