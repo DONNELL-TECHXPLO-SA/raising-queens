@@ -91,6 +91,16 @@ const Footer = () => {
           <p>
             © {new Date().getFullYear()} Raising Queens. All rights reserved.
           </p>
+          <p className="footer-developed-by">
+            Developed by{" "}
+            <a
+              href="https://techxplofoundation.org"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <strong>TechXplo Foundation</strong>
+            </a>
+          </p>
         </div>
       </div>
     </footer>

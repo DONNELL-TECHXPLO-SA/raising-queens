@@ -99,6 +99,15 @@
   font-size: 14px;
 }
 
+.footer-developed-by a {
+  color: #c6a291;
+  text-decoration: none;
+}
+
+.footer-developed-by a:hover {
+  text-decoration: underline;
+}
+
 .footer-policies {
   display: flex;
   gap: 20px;
