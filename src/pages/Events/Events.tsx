@@ -16,7 +16,6 @@ const Events = () => {
   useEffect(() => {
     const loadEvents = async () => {
       setIsLoading(true);
-
       const loadedEvents = await fetchEventsFromSheet();
       setEvents(loadedEvents);
       setIsLoading(false);
@@ -48,13 +47,12 @@ const Events = () => {
   );
 
   const eventsSchema = useMemo(() => {
-    const upcomingEvents = events.filter((event) => event.status === "upcoming");
+    if (events.length === 0) return undefined;
 
     return {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: "Raising Queens Upcoming Events",
-      itemListElement: upcomingEvents.slice(0, 10).map((event, index) => ({
+      itemListElement: events.map((event, index) => ({
         "@type": "ListItem",
         position: index + 1,
         item: {
@@ -62,9 +60,10 @@ const Events = () => {
           name: event.title,
           description: event.description,
           startDate: event.eventDate.toISOString(),
-          eventStatus: "https://schema.org/EventScheduled",
-          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-          image: event.image,
+          eventStatus:
+            event.status === "past"
+              ? "https://schema.org/EventCompleted"
+              : "https://schema.org/EventScheduled",
           location: {
             "@type": "Place",
             name: event.location,
@@ -86,7 +85,7 @@ const Events = () => {
         keywords="women empowerment events, workshops South Africa, Raising Queens events"
         schema={eventsSchema}
       />
-      {/* Events Hero Section */}
+
       <section className="events-hero">
         <div className="events-hero-content">
           <h1>Our Events</h1>
@@ -97,7 +96,6 @@ const Events = () => {
         </div>
       </section>
 
-      {/* Events Filter */}
       <section className="events-filter">
         <div className="filter-container">
           <h3>Filter Events</h3>
@@ -136,72 +134,60 @@ const Events = () => {
         </div>
       </section>
 
-      {/* Featured Event */}
-      <section className="featured-event">
-        <div className="featured-container">
-          {featuredEvent ? (
-            <>
-              <div className="featured-content">
-                <span className="featured-badge">Featured Event</span>
-                <h2>{featuredEvent.title}</h2>
-                <p>{featuredEvent.description}</p>
-                <div className="event-details">
-                  <div className="detail-item">
-                    <i className="fas fa-calendar-alt"></i>
-                    <span>
-                      {featuredEvent.eventDate.toLocaleDateString("en-US", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </span>
-                  </div>
-                  <div className="detail-item">
-                    <i className="fas fa-map-marker-alt"></i>
-                    <span>{featuredEvent.location}</span>
-                  </div>
-                  <div className="detail-item">
-                    <i className="fas fa-clock"></i>
-                    <span>{featuredEvent.time || "To be confirmed"}</span>
-                  </div>
+      {featuredEvent && (
+        <section className="featured-event">
+          <div className="featured-container">
+            <div className="featured-content">
+              <span className="featured-badge">Featured Event</span>
+              <h2>{featuredEvent.title}</h2>
+              <p>{featuredEvent.description}</p>
+              <div className="event-details">
+                <div className="detail-item">
+                  <i className="fas fa-calendar-alt"></i>
+                  <span>
+                    {featuredEvent.eventDate.toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </span>
                 </div>
-                {featuredEvent.registerUrl ? (
-                  <a
-                    className="register-btn"
-                    href={featuredEvent.registerUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Register Now
-                  </a>
-                ) : (
-                  <button className="register-btn" disabled>
-                    Registration Opening Soon
-                  </button>
-                )}
+                <div className="detail-item">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>{featuredEvent.location}</span>
+                </div>
+                <div className="detail-item">
+                  <i className="fas fa-clock"></i>
+                  <span>{featuredEvent.time || "To be confirmed"}</span>
+                </div>
               </div>
-              <div className="featured-image">
-                <img
-                  src={featuredEvent.image}
-                  alt={featuredEvent.title}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            </>
-          ) : (
-            <div className="featured-empty">
-              <h2>No featured event yet</h2>
-              <p>
-                Add an event with id <strong>01-featured</strong> in the sheet
-                to show it here.
-              </p>
+              {featuredEvent.registerUrl ? (
+                <a
+                  className="register-btn"
+                  href={featuredEvent.registerUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Register Now
+                </a>
+              ) : (
+                <button className="register-btn" disabled>
+                  Registration Opening Soon
+                </button>
+              )}
             </div>
-          )}
-        </div>
-      </section>
+            <div className="featured-image">
+              <img
+                src={featuredEvent.image}
+                alt={featuredEvent.title}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </section>
+      )}
 
-      {/* Events Grid */}
       <section className="events-grid">
         <div className="events-container">
           {isLoading && (
