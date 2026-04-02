@@ -1,0 +1,148 @@
+.bank-details-page {
+  min-height: 100vh;
+}
+
+.banking-page {
+  min-height: 100vh;
+  background: #f9f5f3;
+  padding: 30px 20px 60px;
+  font-family: "Poppins", sans-serif;
+}
+
+.banking-hero {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 10px;
+}
+
+.banking-hero .eyebrow {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(198, 162, 145, 0.15);
+  color: #c6a291;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.banking-hero h1 {
+  font-size: 2.8rem;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.banking-hero p {
+  color: #555;
+  line-height: 1.7;
+}
+
+.details-card {
+  background: #fff;
+  border-radius: 24px;
+  max-width: 720px;
+  margin: 0 auto 40px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.detail {
+  background: #fdf9f7;
+  border-radius: 16px;
+  padding: 18px;
+  border: 1px solid rgba(198, 162, 145, 0.2);
+}
+
+.detail .label {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #a87f71;
+}
+
+.detail .value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 6px;
+}
+
+.helper-box {
+  background: linear-gradient(135deg, #c6a291, #a87f71);
+  border-radius: 24px;
+  color: #fff;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(198, 162, 145, 0.35);
+}
+
+.helper-box a {
+  color: #fff;
+  font-weight: 600;
+}
+
+.helper-box h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.helper-box p {
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.helper-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.helper-actions .btn {
+  background: #fff;
+  color: #c6a291;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.25);
+}
+
+.helper-actions .btn:hover {
+  transform: translateY(-2px);
+}
+
+.helper-actions .btn.ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: none;
+}
+
+@media (max-width: 640px) {
+  .banking-page {
+    padding-top: 100px;
+  }
+
+  .banking-hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .details-card {
+    padding: 24px;
+  }
+
+  .helper-box {
+    padding: 30px 20px;
+  }
+}
